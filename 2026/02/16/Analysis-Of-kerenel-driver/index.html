@@ -94,7 +94,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://0xm7mad.github.io/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-02-16T13:23:14.622Z">
-<meta property="article:modified_time" content="2026-02-21T18:14:02.048Z">
+<meta property="article:modified_time" content="2026-02-24T01:22:40.683Z">
 <meta property="article:author" content="Mohammed Nour Al Murie">
 <meta property="article:tag" content="Reverse , Malware Analysis">
 <meta name="twitter:card" content="summary">
@@ -331,8 +331,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-02-21 21:14:02</span>
-            <span class="mobile">2026-02-21 21:14:02</span>
+            <span class="desktop">2026-02-24 04:22:40</span>
+            <span class="mobile">2026-02-24 04:22:40</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -374,7 +374,7 @@
 
 
 
-<h2 id="Analysis-of-a-vulnerable-kernel-driver-CVE-2025-68947"><a href="#Analysis-of-a-vulnerable-kernel-driver-CVE-2025-68947" class="headerlink" title="Analysis of a vulnerable kernel driver (CVE-2025-68947)"></a>Analysis of a vulnerable kernel driver (CVE-2025-68947)</h2><h5 id="malware-sample"><a href="#malware-sample" class="headerlink" title="malware_sample"></a><a class="link"   target="_blank" rel="noopener" href="https://malops.io/challenges/kernel-shield" >malware_sample<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></h5><h5 id="This-is-from-a-student-to-a-student-so-may-somthing-be-incorrect-or-not-accuret"><a href="#This-is-from-a-student-to-a-student-so-may-somthing-be-incorrect-or-not-accuret" class="headerlink" title="This is from a student to a student ( so may somthing be incorrect or not accuret )"></a>This is from a student to a student ( so may somthing be incorrect or not accuret )</h5><h5 id="Before-reading-best-kernel-intro-some-sources-also-this-Internal-explain"><a href="#Before-reading-best-kernel-intro-some-sources-also-this-Internal-explain" class="headerlink" title="Before reading : best_kernel_intro,some sources, also_this , Internal_explain"></a>Before reading : <a class="link"   target="_blank" rel="noopener" href="https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/" >best_kernel_intro<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>,<a class="link"   target="_blank" rel="noopener" href="https://cymulate.com/blog/defending-against-bring-your-own-vulnerable-driver-byovd-attacks/" >some sources<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>, <a class="link"   target="_blank" rel="noopener" href="https://www.ired.team/miscellaneous-reversing-forensics/windows-kernel-internals/windows-kernel-drivers-101" >also_this<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> , <a class="link"   target="_blank" rel="noopener" href="https://www.ired.team/miscellaneous-reversing-forensics/windows-kernel-internals" >Internal_explain<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></h5><h5 id="Overview"><a href="#Overview" class="headerlink" title="Overview :"></a>Overview :</h5><p>A vulnerability in the NSecsoft’s NSecKrnl Windows kernel driver allows a local attacker to terminate arbitrary processes — including those owned by SYSTEM and Protected Process Light (PPL) targets — without requiring elevated trust. By leveraging a Bring Your Own Vulnerable Driver (BYOVD) technique, an attacker can exploit this flaw to disable endpoint security solutions and critical system processes, effectively achieving defense evasion and process control at the kernel level.</p>
+<h2 id="Analysis-of-a-vulnerable-kernel-driver-CVE-2025-68947"><a href="#Analysis-of-a-vulnerable-kernel-driver-CVE-2025-68947" class="headerlink" title="Analysis of a vulnerable kernel driver (CVE-2025-68947)"></a>Analysis of a vulnerable kernel driver (CVE-2025-68947)</h2><h5 id="malware-sample"><a href="#malware-sample" class="headerlink" title="malware_sample"></a><a class="link"   target="_blank" rel="noopener" href="https://malops.io/challenges/kernel-shield" >malware_sample<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></h5><h5 id="Before-reading-best-kernel-intro-some-sources-also-this-Internal-explain"><a href="#Before-reading-best-kernel-intro-some-sources-also-this-Internal-explain" class="headerlink" title="Before reading : best_kernel_intro,some sources, also_this , Internal_explain"></a>Before reading : <a class="link"   target="_blank" rel="noopener" href="https://blog.talosintelligence.com/exploring-malicious-windows-drivers-part-1-introduction-to-the-kernel-and-drivers/" >best_kernel_intro<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>,<a class="link"   target="_blank" rel="noopener" href="https://cymulate.com/blog/defending-against-bring-your-own-vulnerable-driver-byovd-attacks/" >some sources<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>, <a class="link"   target="_blank" rel="noopener" href="https://www.ired.team/miscellaneous-reversing-forensics/windows-kernel-internals/windows-kernel-drivers-101" >also_this<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> , <a class="link"   target="_blank" rel="noopener" href="https://www.ired.team/miscellaneous-reversing-forensics/windows-kernel-internals" >Internal_explain<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></h5><h5 id="Overview"><a href="#Overview" class="headerlink" title="Overview :"></a>Overview :</h5><p>A vulnerability in the NSecsoft’s NSecKrnl Windows kernel driver allows a local attacker to terminate arbitrary processes — including those owned by SYSTEM and Protected Process Light (PPL) targets — without requiring elevated trust. By leveraging a Bring Your Own Vulnerable Driver (BYOVD) technique, an attacker can exploit this flaw to disable endpoint security solutions and critical system processes, effectively achieving defense evasion and process control at the kernel level.</p>
 <h3 id="Basic-Static-Analysis"><a href="#Basic-Static-Analysis" class="headerlink" title=" Basic Static Analysis	"></a><ins> Basic Static Analysis	</ins></h3><h5 id="First-start-with-DIE-Detect-It-Easy"><a href="#First-start-with-DIE-Detect-It-Easy" class="headerlink" title="First start with DIE ( Detect It Easy )"></a>First start with DIE ( Detect It Easy )</h5><p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -510,7 +510,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2026-02-21 21:14:02
+                    :</strong> 2026-02-24 04:22:40
             </li>
         
         <li>

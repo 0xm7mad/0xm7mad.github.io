@@ -94,7 +94,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://0xm7mad.github.io/images/avatar.png">
 <meta property="article:published_time" content="2026-08-28T12:22:20.164Z">
-<meta property="article:modified_time" content="2026-09-14T21:19:02.055Z">
+<meta property="article:modified_time" content="2026-09-14T21:33:56.866Z">
 <meta property="article:author" content="Mohammed Nour Al Murie">
 <meta property="article:tag" content="SOC , DFIR">
 <meta name="twitter:card" content="summary">
@@ -398,8 +398,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-09-15 00:19:02</span>
-            <span class="mobile">2026-09-15 00:19:02</span>
+            <span class="desktop">2026-09-15 00:33:56</span>
+            <span class="mobile">2026-09-15 00:33:56</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -464,7 +464,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/Detection_Page.png"
+                     data-src="/images/Cs/Detection_Page.png"
                       alt="Detection Page"
                 ></p>
 <p>The following processes were observed running under the m7mad user account:</p>
@@ -482,14 +482,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/Power1.png"
+                     data-src="/images/Cs/Power1.png"
                       alt="PowerShell-Process"
                 ></p>
 <p>Here the powershell ran ll.ps1 file and after that  this event :<br></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/Power2.png"
+                     data-src="/images/Cs/Power2.png"
                       alt="Mitre-Attack"
                 ></p>
 <p>Falcon classified the activity as <code>process injection</code> that inject into windows legitimate process and after that on the same time notepad ran , so the process injected is <code>notepad</code></p>
@@ -499,14 +499,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/notepad1.png"
+                     data-src="/images/Cs/notepad1.png"
                       alt="!!"
                 ></p>
 <p>Also here notepad done a process injection into a windows legitimate process , which is seen in the next event : </p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/notepad2.png"
+                     data-src="/images/Cs/notepad2.png"
                       alt="!!"
                 ></p>
 <ul>
@@ -516,14 +516,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/msedge1.png"
+                     data-src="/images/Cs/msedge1.png"
                       alt="!!"
                 ></p>
 <p>The process ran from the <code>msedge</code> is <code>chromelevator.exe</code> and it was identified as a browser-data-related tool. Publicly available information associates the tool with extraction&#x2F;decryption of browser-protected data, including cookies and other browser artifacts.</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/VirusTotal.png"
+                     data-src="/images/Cs/VirusTotal.png"
                       alt="!!"
                 ></p>
 <p>Also this process found in <a class="link"   target="_blank" rel="noopener" href="https://github.com/xaitax/Chrome-App-Bound-Encryption-Decryption" >github<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> which it used for browser steal data ,cookies and wallet .. etc  </p>
@@ -534,7 +534,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/power-net1.png"
+                     data-src="/images/Cs/power-net1.png"
                       alt="!!"
                 ></p>
 <p>From this we observed that <code>1</code> network connection appear and <code>23</code> disk operation on <code>powershell</code> process , The following operations were considered suspicious and were investigated further :</p>
@@ -542,7 +542,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/power-net2.png"
+                     data-src="/images/Cs/power-net2.png"
                       alt="!!"
                 ></p>
 <ul>
@@ -554,7 +554,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/power-disk1.png"
+                     data-src="/images/Cs/power-disk1.png"
                       alt="!!"
                 ></p>
 <p>PowerShell wrote two DLL files to disk. Subsequent analysis identified one of the decrypted DLLs as the payload used during the <code>notepad.exe</code> injection chain. </p>
@@ -565,14 +565,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/note-net1.png"
+                     data-src="/images/Cs/note-net1.png"
                       alt="!!"
                 ></p>
 <p>Network Connection : </p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/note-net2.png"
+                     data-src="/images/Cs/note-net2.png"
                       alt="!!"
                 ></p>
 <p>Here we see that the Destination address on the process is connected to is the same as the <code>powershell</code> process which is <code>192.168.59.152</code> on port <code>80</code> which may indicate that this IP is the payload-hosting ( Command and control ).. ( Approved later )</p>
@@ -580,7 +580,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/note-disk1.png"
+                     data-src="/images/Cs/note-disk1.png"
                       alt="!!"
                 ></p>
 <p>Here we see that <code>notepad</code> dropped a DLL and load it as we observed before on <code>msedge</code> by injection </p>
@@ -591,14 +591,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/ms-net1.png"
+                     data-src="/images/Cs/ms-net1.png"
                       alt="!!"
                 ></p>
 <p>Network Connection :</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/ms-net2.png"
+                     data-src="/images/Cs/ms-net2.png"
                       alt="!!"
                 ></p>
 <p>The first connection for DestDestination IP <code>224.0.0.251</code> its normal , Microsoft Edge uses this IP address for device discovery and network features.</p>
@@ -607,20 +607,20 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/ms-disk3.png"
+                     data-src="/images/Cs/ms-disk3.png"
                       alt="!!"
                 ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/ms-disk2.png"
+                     data-src="/images/Cs/ms-disk2.png"
                       alt="!!"
                 ></p>
 <p>As we see on the above Pics that the msedge opened <code>stealer_data.txt</code> and <code>User Data</code> directory for any browsers installed in the machine </p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/ms-disk11.png"
+                     data-src="/images/Cs/ms-disk11.png"
                       alt="!!"
                 ></p>
 <p>And here it dropping the browser stealer , which is related to the opened <code>User Data</code> directory for the browsers </p>
@@ -628,7 +628,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/ms-Registry.png"
+                     data-src="/images/Cs/ms-Registry.png"
                       alt="!!"
                 ></p>
 <p>The msedge.exe process accessed the following registry location:</p>
@@ -641,14 +641,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/AES.png"
+                     data-src="/images/Cs/AES.png"
                       alt="!!"
                 ></p>
 <p>And for the <code>msedge</code> process we need to specify the <code>ContextBaseFileName</code> to get it or we can just see the processes with port <code>4444</code> as we saw in the detection page , if we do so we will see :</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/AES2.png"
+                     data-src="/images/Cs/AES2.png"
                       alt="!!"
                 ></p>
 <p>The port <code>4444</code> is most likely Suspected exfiltration channel, while the port <code>80</code> for downloading <code>chromelevator</code> from the payload-hosting , also same for <code>powershell</code> and <code>notepad</code></p>
@@ -659,7 +659,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/AES3.png"
+                     data-src="/images/Cs/AES3.png"
                       alt="!!"
                 ></p>
 <p>Also used this search :</p>
@@ -668,28 +668,28 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/AES4.png"
+                     data-src="/images/Cs/AES4.png"
                       alt="!!"
                 ></p>
 <p>powershell , notepad and msedge done a http connection on 192.168.59.152 while also msedge done a unusual port connection to the same IP , the http used for downloading the malicious files ( as observed later ) while  port 4444 is suspected exfiltration channel</p>
 <h3 id="Full-process-chain-Tree"><a href="#Full-process-chain-Tree" class="headerlink" title="Full process chain ( Tree )"></a>Full process chain ( Tree )</h3><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/tree-2.png"
+                     data-src="/images/Cs/tree-2.png"
                       alt="!!"
                 ></p>
 <h3 id="Mitigation-and-Further-analysis"><a href="#Mitigation-and-Further-analysis" class="headerlink" title="Mitigation and Further analysis"></a>Mitigation and Further analysis</h3><h4 id="Containment"><a href="#Containment" class="headerlink" title="Containment"></a>Containment</h4><p>If we found that a process connect to suspicious IP we can  <code>network contain</code> for the Host so you can isolate it from the network if its tried to spread to other Workstation in the network  , we can do so from Detection Page and on the process we suspect :</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/Net-Cont.png"
+                     data-src="/images/Cs/Net-Cont.png"
                       alt="!!"
                 ></p>
 <h4 id="Host-connection-and-retrieve-malicious-script"><a href="#Host-connection-and-retrieve-malicious-script" class="headerlink" title="Host connection and retrieve malicious script"></a>Host connection and retrieve malicious script</h4><p>We can even connect to the host so we can run command on it and get samples of the malicious scripts and DLLs </p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/conf.png"
+                     data-src="/images/Cs/conf.png"
                       alt="!!"
                 ></p>
 <p>These settings can be good for you if you want to connect and retrieve or dump process from the infected machine using these commands</p>
@@ -697,14 +697,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/resp1.png"
+                     data-src="/images/Cs/resp1.png"
                       alt="!!"
                 ></p>
 <p>I will first retrieve the powershell file in <code>ll.ps1</code> by cat the file that on desktop :</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/resp2.png"
+                     data-src="/images/Cs/resp2.png"
                       alt="!!"
                 ></p>
 <p>This what i got :</p>
@@ -740,7 +740,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/wire1.png"
+                     data-src="/images/Cs/wire1.png"
                       alt="!!"
                 ></p>
 <p>As we can see that the IP <code>192.168.59.152</code> has 3 GETs to 3 objects : <code>object.dat</code> , <code>captcha.bin</code> and <code>chromelevator.exe</code> , and this order can reveal :</p>
@@ -753,14 +753,14 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/wire2.png"
+                     data-src="/images/Cs/wire2.png"
                       alt="!!"
                 ></p>
 <p>Here we can see that its a one-way traffic from our infected machine to the suspicous IP , and if we incpect TCP packets we see that the first packets is Length of data then the data :</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/cs/wire3.png"
+                     data-src="/images/Cs/wire3.png"
                       alt="!!"
                 ></p>
 <p>Offset <code>0</code> is related to Length of the data and from offset <code>0x4</code> to <code>0x34</code> its the data then the <code>OK</code> after finishind the send and so on </p>
@@ -864,7 +864,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2026-09-15 00:19:02
+                    :</strong> 2026-09-15 00:33:56
             </li>
         
         <li>

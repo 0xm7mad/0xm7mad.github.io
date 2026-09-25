@@ -328,7 +328,8 @@ main::after{
 
   letter-spacing:.08em;
   pointer-events:none;
-}/* ---------- about ---------- */
+}
+/* ---------- about ---------- */
 
 .about-grid{
   display:grid;
@@ -341,6 +342,16 @@ main::after{
 .about-block{
   background:var(--ink-2);
   padding:16px 18px;
+  transition:background .2s ease, border-color .2s ease;
+}
+
+.about-block:hover{
+  background:rgba(255, 255, 255, 0.055);
+  border-color:rgba(107, 176, 165, 0.25);
+}
+
+.about-block:hover h3{
+  color:var(--amber);
 }
 
 .about-block h3{
@@ -376,4 +387,8 @@ main::after{
     transition-duration:0.01ms !important;
     scroll-behavior:auto !important;
   }
+}
+#background > div:not(.sec-head):hover {
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(107, 176, 165, 0.25);
 }

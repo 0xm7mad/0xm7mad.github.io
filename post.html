@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writeup — m7mad.sec</title>
+<meta name="description" content="A DFIR, malware analysis, or reverse engineering writeup from m7mad.sec.">
+<meta property="og:title" id="og-title" content="Writeup — m7mad.sec">
+<meta property="og:description" id="og-description" content="A DFIR, malware analysis, or reverse engineering writeup from m7mad.sec.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+
+<link rel="stylesheet" href="assets/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/powershell.min.js"></script>
+
+<style>
+  body {
+    background: #14171c;
+  }
+
+  main.post-main {
+    max-width: 820px;
+  }
+
+  .article-paper {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .article-paper pre {
+    border: 1px solid var(--line);
+    overflow-x: auto;
+  }
+
+  .article-paper pre code.hljs {
+    background: transparent;
+    padding: 0;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: var(--paper-text-dim);
+    font-style: italic;
+  }
+
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-literal,
+  .hljs-subst {
+    color: var(--teal);
+  }
+
+  .hljs-string,
+  .hljs-attr,
+  .hljs-regexp,
+  .hljs-addition {
+    color: var(--amber);
+  }
+
+  .hljs-number,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-deletion {
+    color: var(--rust);
+  }
+
+  .hljs-title,
+  .hljs-title.function_,
+  .hljs-title.class_,
+  .hljs-section {
+    color: var(--paper-text);
+    font-weight: 600;
+  }
+
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-params,
+  .hljs-attribute {
+    color: var(--paper-text);
+  }
+
+  .hljs-meta,
+  .hljs-tag,
+  .hljs-name {
+    color: var(--teal);
+  }
+
+  .article-paper img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    margin: 24px auto;
+    border-radius: 2px;
+    cursor: zoom-in;
+  }
+
+  .article-paper p {
+      font-size: 17px;
+
+    line-height: 1.95;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+  }
+
+  .article-meta .tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono';
+    font-size: 12px;
+    color: var(--ink-text-dim);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    margin-bottom: 26px;
+  }
+
+  .back-link:hover {
+    color: var(--amber);
+    border-color: var(--amber);
+  }
+
+  .article-paper table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    overflow-x: auto;
+    display: block;
+  }
+
+  .article-paper th,
+  .article-paper td {
+    border: 1px solid var(--line);
+    padding: 10px 12px;
+    text-align: left;
+  }
+
+  .article-paper th {
+    font-family: 'JetBrains Mono';
+  }
+
+  .article-paper blockquote {
+    border-left: 3px solid var(--amber);
+    padding-left: 18px;
+    margin-left: 0;
+    color: var(--ink-text-dim);
+  }
+
+  .article-paper hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 32px 0;
+  }
+
+  .article-paper code {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Fullscreen image viewer */
+  .image-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 30px;
+    cursor: zoom-out;
+  }
+
+  .image-lightbox.active {
+    display: flex;
+  }
+
+  .image-lightbox img {
+    max-width: 95vw;
+    max-height: 92vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 2px;
+    cursor: zoom-out;
+  }
+
+  .image-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: none;
+    border: none;
+    padding: 4px;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  .image-lightbox-close:hover {
+    opacity: 1;
+  }
+</style>
+
+</head>
+<script>
+  document.addEventListener('mousemove', (event) => {
+    const x = (event.clientX / window.innerWidth - 0.5) * 20;
+    const y = (event.clientY / window.innerHeight - 0.5) * 20;
+
+    document.documentElement.style.setProperty('--grid-x', `${x}px`);
+    document.documentElement.style.setProperty('--grid-y', `${y}px`);
+  });
+</script>
+<body>
+
+<a class="skip-link" href="#article-content">Skip to content</a>
+
+<div class="rail">
+
+  <div class="id">
+    m7mad<b>.sec</b>
+  </div>
+
+  <nav aria-label="Primary">
+    <a href="index.html#about">profile</a>
+    <a href="index.html#focus">focus</a>
+    <a href="index.html#writeups">writeups</a>
+    <a href="index.html#terminal-sec">terminal</a>
+    <a href="index.html#contact">contact</a>
+  </nav>
+
+</div>
+
+<main class="post-main">
+
+  <a class="back-link" href="index.html#writeups">
+    &larr; back to case log
+  </a>
+
+  <div class="article-paper" id="article-content" aria-live="polite">
+    <p class="mono">loading…</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>
+    Case file maintained by Mohammed Nour Al Murie — updated as new writeups are logged.
+  </p>
+</footer>
+
+<!-- Image lightbox -->
+
+<div class="image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+
+  <button class="image-lightbox-close" id="image-lightbox-close" aria-label="Close image viewer" type="button">
+    &times;
+  </button>
+
+  <img id="lightbox-image" src="" alt="">
+
+</div>
+
+<script>
+
+marked.setOptions({
+  breaks: false,
+  gfm: true
+});
+
+
+const params = new URLSearchParams(window.location.search);
+
+const slug = params.get('slug');
+
+const content = document.getElementById('article-content');
+
+
+
+/*
+ * Convert Markdown image paths into paths
+ * that work with the current site structure.
+ *
+ * Your Markdown can contain:
+ *
+ * images/cs/AES.png
+ *
+ * /images/cs/AES.png
+ *
+ * posts/images/cs/AES.png
+ *
+ * and they will all resolve correctly.
+ */
+function fixImagePaths(markdown) {
+
+  return markdown.replace(
+    /(!\[[^\]]*\]\()([^)]+)(\))/g,
+    function(match, start, imagePath, end) {
+
+      /*
+       * Leave external images untouched.
+       */
+      if (
+        imagePath.startsWith('http://') ||
+        imagePath.startsWith('https://') ||
+        imagePath.startsWith('data:') ||
+        imagePath.startsWith('//')
+      ) {
+        return match;
+      }
+
+
+      /*
+       * Remove leading slash.
+       *
+       * /images/cs/AES.png
+       * becomes
+       * images/cs/AES.png
+       */
+      imagePath = imagePath.replace(/^\/+/, '');
+
+
+      /*
+       * If the Markdown already contains posts/,
+       * don't add it again.
+       */
+      if (!imagePath.startsWith('posts/')) {
+
+        imagePath = 'posts/' + imagePath;
+
+      }
+
+
+      return start + imagePath + end;
+
+    }
+  );
+
+}
+
+
+
+/*
+ * Load the requested writeup.
+ */
+async function loadPost() {
+
+  /*
+   * No slug provided.
+   */
+  if (!slug) {
+
+    content.innerHTML = `
+      <p>
+        No post specified.
+        <a href="index.html#writeups">
+          Back to the case log.
+        </a>
+      </p>
+    `;
+
+    return;
+  }
+
+
+  try {
+
+    /*
+     * Load manifest.
+     */
+    const manRes = await fetch('posts/manifest.json');
+
+
+    if (!manRes.ok) {
+
+      throw new Error('Could not load manifest.json');
+
+    }
+
+
+    const posts = await manRes.json();
+
+
+    /*
+     * Find requested post.
+     */
+    const meta = posts.find(
+      p => p.slug === slug
+    );
+
+
+    if (!meta) {
+
+      content.innerHTML = `
+        <p>
+          No post found for "${slug}".
+          <a href="index.html#writeups">
+            Back to the case log.
+          </a>
+        </p>
+      `;
+
+      return;
+    }
+
+
+    /*
+     * Update browser title.
+     */
+    document.title =
+      `${meta.title} — m7mad.sec`;
+
+    document.getElementById('og-title').content =
+      `${meta.title} — m7mad.sec`;
+
+    if (meta.excerpt) {
+      document.getElementById('og-description').content = meta.excerpt;
+    }
+
+
+    /*
+     * Load Markdown.
+     */
+    const mdRes =
+      await fetch(`posts/${slug}.md`);
+
+
+    if (!mdRes.ok) {
+
+      throw new Error(
+        'Missing markdown file'
+      );
+
+    }
+
+
+    let md =
+      await mdRes.text();
+
+
+    /*
+     * Remove YAML front matter.
+     *
+     * Example:
+     *
+     * ---
+     * title: Example
+     * tags: SOC
+     * ---
+     */
+    md = md.replace(
+      /^---\s*\n[\s\S]*?\n---\s*\n/,
+      ''
+    );
+
+
+    /*
+     * Fix image paths.
+     */
+    md = fixImagePaths(md);
+
+
+    /*
+     * Render Markdown.
+     */
+const renderedMarkdown = marked.parse(md);
+
+content.innerHTML = `
+  <div class="article-meta mono">
+    <span>${meta.date}</span>
+    <span class="cat">${meta.category}</span>
+    <span class="tags">
+      ${(meta.tags || [])
+        .map(t => `<span class="tag-pill">${t}</span>`)
+        .join('')}
+    </span>
+  </div>
+
+  ${renderedMarkdown}
+`;
+
+content.querySelectorAll('pre code').forEach(function(block) {
+  const languageClass = Array.from(block.classList)
+    .find(cls => cls.startsWith('language-'));
+
+  if (languageClass) {
+    const language = languageClass.replace('language-', '');
+
+    if (hljs.getLanguage(language)) {
+      hljs.highlightElement(block);
+    }
+  } else {
+    hljs.highlightElement(block);
+  }
+});
+
+
+    /*
+     * Find all article images.
+     */
+    const images =
+      content.querySelectorAll('img');
+
+
+    images.forEach(function(img) {
+
+      /*
+       * Lazy loading.
+       */
+      img.loading = 'lazy';
+
+      img.decoding = 'async';
+
+
+      /*
+       * Default alt text.
+       */
+      if (!img.alt) {
+
+        img.alt = 'Writeup image';
+
+      }
+
+
+      /*
+       * Make focusable and operable by keyboard too.
+       */
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Expand image: ' + img.alt);
+
+
+      /*
+       * Open image in fullscreen viewer.
+       */
+      function trigger() {
+        openLightbox(img.src, img.alt);
+      }
+
+      img.addEventListener('click', trigger);
+      img.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          trigger();
+        }
+      });
+
+    });
+
+  }
+
+
+  catch (err) {
+
+    console.error(
+      'Writeup loading error:',
+      err
+    );
+
+
+    content.innerHTML = `
+      <p>
+        Could not load this post.
+        <a href="index.html#writeups">
+          Back to the case log.
+        </a>
+      </p>
+    `;
+
+  }
+
+}
+
+
+
+/*
+ * Image lightbox.
+ */
+const lightbox =
+  document.getElementById(
+    'image-lightbox'
+  );
+
+const lightboxImage =
+  document.getElementById(
+    'lightbox-image'
+  );
+
+const lightboxClose =
+  document.getElementById(
+    'image-lightbox-close'
+  );
+
+
+
+function openLightbox(src, alt) {
+
+  lightboxImage.src = src;
+
+  lightboxImage.alt = alt || 'Writeup image';
+
+  lightbox.classList.add('active');
+
+  document.body.style.overflow = 'hidden';
+
+}
+
+
+
+function closeLightbox() {
+
+  lightbox.classList.remove('active');
+
+  lightboxImage.src = '';
+
+  document.body.style.overflow = '';
+
+}
+
+
+
+/*
+ * Close when clicking background.
+ */
+lightbox.addEventListener(
+  'click',
+  function(event) {
+
+    if (
+      event.target === lightbox ||
+      event.target === lightboxClose
+    ) {
+
+      closeLightbox();
+
+    }
+
+  }
+);
+
+
+
+/*
+ * ESC closes image viewer.
+ */
+document.addEventListener(
+  'keydown',
+  function(event) {
+
+    if (
+      event.key === 'Escape' &&
+      lightbox.classList.contains('active')
+    ) {
+
+      closeLightbox();
+
+    }
+
+  }
+);
+
+
+
+/*
+ * Start loading.
+ */
+loadPost();
+
+</script>
+
+</body>
+</html>

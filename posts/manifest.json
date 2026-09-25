@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "Process-Injection-Investigation-CrowdStrike",
+    "title": "Detecting Process Injection and Browser Data Theft with CrowdStrike Falcon",
+    "date": "2026-08-28",
+    "category": ["Internship","Real World"],
+    "tags": ["SOC", "DFIR"],
+    "excerpt": "CrowdStrike Falcon detected suspicious activity involving PowerShell execution, process injection, and communication with an internal IP address."
+  },
+  {
+    "slug": "ieee-jordan-ctf-2025",
+    "title": "IEEE Jordan CTF 2025",
+    "date": "2026-02-20",
+    "category": "CTF",
+    "tags": ["Reverse", "Forensic"],
+    "excerpt": "Writeups for a hard DFIR challenge and a medium reverse engineering challenge, including a first-blood memory forensics case."
+  },
+  {
+    "slug": "just-pdf",
+    "title": "JUST PDF",
+    "date": "2026-02-20",
+    "category": "CTF",
+    "tags": ["Reverse", "Malware Analysis", "PDF Analysis"],
+    "excerpt": "A member of the accounting team executed a malicious payload disguised as a PDF about Al-Khwarizmi, received via phishing."
+  },
+  {
+    "slug": "Jordan-NCSC-2025-Reverse-Writeup",
+    "title": "Jordan NCSC 2025 Reverse Writeup",
+    "date": "2026-02-20",
+    "category": "CTF",
+    "tags": ["Reverse", "Malware Analysis"],
+    "excerpt": "Final reverse engineering writeup from Jordan NCSC 2025."
+  },
+  {
+    "slug": "Analysis-Of-kerenel-driver",
+    "title": "Analysis of a Vulnerable Kernel Driver (CVE-2025-68947)",
+    "date": "2026-02-16",
+    "category": "Real World",
+    "tags": ["Reverse", "Malware Analysis"],
+    "excerpt": "A vulnerability in a third-party kernel driver, analysed from sample to root cause."
+  },
+   {
+    "slug": "Forcepoint DLP Project",
+    "title": "Detecting senstive data in images, Clipboard and phases in Forcepoint DLP",
+    "date": "2026-09-27",
+    "category":[ "Real World","DLP","Internship"],
+    "tags": ["SOC", "DFIR","DLP"],
+    "excerpt": "Project in DLP + OCR"
+  }
+]

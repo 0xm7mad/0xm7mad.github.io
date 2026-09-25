@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohammed Nour Al Murie — Security Engineer, Blue Team</title>
+<meta name="description" content="Mohammed Nour Al Murie — Security Engineer focused on DFIR, malware analysis and reverse engineering.">
+<meta property="og:title" content="Mohammed Nour Al Murie — Security Engineer, Blue Team">
+<meta property="og:description" content="DFIR, malware analysis, reverse engineering and Active Directory writeups from a Blue Team security engineer.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <script>
+    let atBottom = false;
+
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const pageHeight = document.documentElement.scrollHeight;
+
+      atBottom = scrollPosition >= pageHeight - 5;
+    });
+
+    window.addEventListener('wheel', (event) => {
+      if (atBottom && event.deltaY > 0) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    });
+  </script>
+</head>
+<script>
+  document.addEventListener('mousemove', (event) => {
+    const x = (event.clientX / window.innerWidth - 0.5) * 20;
+    const y = (event.clientY / window.innerHeight - 0.5) * 20;
+
+    document.documentElement.style.setProperty('--grid-x', `${x}px`);
+    document.documentElement.style.setProperty('--grid-y', `${y}px`);
+  });
+</script>
+<body>
+
+<a class="skip-link" href="#about">Skip to content</a>
+
+<div class="rail">
+  <div class="id">m7mad<b>.sec</b></div>
+  <nav aria-label="Primary">
+    <a href="#about">profile</a>
+    <a href="#focus">focus</a>
+    <a href="#writeups">writeups</a>
+    <a href="#terminal-sec">terminal</a>
+    <a href="#contact">contact</a>
+  </nav>
+</div>
+
+<main>
+
+  <section class="hero" id="about">
+  <div class="file-tag">
+    <span class="dot"></span>
+    case file — open
+  </div>
+
+  <h1>
+    Mohammed Nour <span class="glyph">Al Murie</span>
+  </h1>
+
+  <p class="role" id="role-line">
+    <span id="role-text"></span>
+    <span class="cursor"></span>
+  </p>
+
+  <p class="summary">
+    I'm a Cybersecurity student in my final year of university,
+    currently working as a Cybersecurity Engineer Intern at Dyiar United Company.
+    My work and self-study focus on Blue Team operations, DFIR, malware analysis,
+    SOC, and threat intelligence.
+  </p>
+
+  <div class="links">
+    <a href="https://github.com/0xm7mad" target="_blank" rel="noopener">
+      github.com/0xm7mad
+    </a>
+
+    <a href="https://www.linkedin.com/in/mohammed-nour-al-murie-1792a32b6/"
+       target="_blank"
+       rel="noopener">
+      linkedin
+    </a>
+
+    <a href="mailto:mohammednouralmurie.0@gmail.com">
+      contact
+    </a>
+  </div>
+</section>
+<section id="background">
+  <div class="sec-head">
+    <span class="num">01</span>
+    <h2>About me</h2>
+  </div>
+
+  <div class="about-grid">
+
+    <div class="about-block">
+      <h3>Education</h3>
+      <p>
+        Cybersecurity student in my final year of university,
+        currently preparing for graduation.
+      </p>
+    </div>
+
+    <div class="about-block">
+      <h3>Internship</h3>
+      <p>
+        Cybersecurity Engineer Intern at
+        <strong>Dyiar United Company</strong>, working hands-on with
+        enterprise security platforms and infrastructure and learning
+        how security operations run in a live environment.
+      </p>
+    </div>
+
+    <div class="about-block">
+      <h3>Self-study</h3>
+      <p>
+        Outside the internship, building depth through CTFs, personal
+        labs, and technical research — the source material for the
+        case log below.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+  <section id="focus">
+    <div class="sec-head"><span class="num">02</span><h2>Focus areas</h2></div>
+    <div class="focus-grid">
+      <div class="focus-item"><h3>DFIR</h3><p>Endpoint investigation, timeline reconstruction, and incident write-ups from real detections.</p></div>
+      <div class="focus-item"><h3>Malware analysis</h3><p>Static and dynamic analysis of samples, unpacking, and behavioural breakdowns.</p></div>
+      <div class="focus-item"><h3>Reverse engineering</h3><p>Windows internals, kernel drivers, and vulnerability analysis at the binary level.</p></div>
+      <div class="focus-item"><h3>Active Directory &amp; Kerberos</h3><p>Attack paths, misconfigurations, and detection coverage in AD environments.</p></div>
+    </div>
+    <div class="chip-row" id="tool-chips">
+      <span class="chip">CrowdStrike Falcon</span>
+      <span class="chip">Forcepoint DLP + OCR</span>
+      <span class="chip">Elastic</span>
+      <span class="chip">Splunk</span>
+      <span class="chip">Windows Internals</span>
+      <span class="chip">IDA</span>
+      <span class="chip">Volatility</span>
+      <span class="chip">PowerShell</span>
+      <span class="chip">Active Directory</span>
+      <span class="chip">Sysinternals</span>
+      <span class="chip">Wireshark</span>
+    </div>
+  </section>
+
+  <section id="writeups">
+    <div class="sec-head"><span class="num">03</span><h2>Writeups &amp; case log</h2></div>
+    <p class="sec-note">Incidents, CTFs, and reverse engineering notes — written in markdown, rendered here.</p>
+    <div class="filters" id="filters"></div>
+    <div class="log" id="log"></div>
+  </section>
+
+  <section id="terminal-sec">
+    <div class="sec-head"><span class="num">04</span><h2>Terminal</h2></div>
+    <p class="sec-note">Type <code>help</code> to see what this does.</p>
+    <div class="term" id="term" onclick="document.getElementById('term-input').focus()">
+      <div class="term-bar">
+        <span class="term-dot" style="background:#b66a4c"></span>
+        <span class="term-dot" style="background:#c9a05c"></span>
+        <span class="term-dot" style="background:#6bb0a5"></span>
+        <span class="term-title mono">visitor@m7mad.sec: ~</span>
+      </div>
+      <div class="term-body mono" id="term-output"></div>
+      <div class="term-input-row mono">
+        <span class="term-prompt">visitor@m7mad&nbsp;~&nbsp;$</span>
+        <input id="term-input" class="term-input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal command input" />
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head"><span class="num">05</span><h2>Contact</h2></div>
+    <p class="summary">Open to Security Engineer, Blue Team, DFIR, and malware analysis roles, and to discussing writeups, CTFs, or
+      findings in more depth.</p>
+    <div class="links">
+      <a href="https://github.com/0xm7mad" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/mohammed-nour-al-murie-1792a32b6/" target="_blank" rel="noopener">linkedin</a>
+      <a href="mailto:mohammednouralmurie.0@gmail.com">email</a>
+    </div>
+  </section>
+
+</main>
+
+<footer><p>Case file maintained by Mohammed Nour Al Murie — updated as new writeups are logged.</p></footer>
+
+<script>
+  marked.setOptions({ breaks: false, gfm: true });
+
+  (function typeRole(){
+    const line = 'Security Engineer — Blue Team — DFIR — Malware Analysis';
+    const el = document.getElementById('role-text');
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      el.textContent = line; return;
+    }
+    let i = 0;
+    (function tick(){
+      el.textContent = line.slice(0, i);
+      i++;
+      if(i <= line.length) setTimeout(tick, 22);
+    })();
+  })();
+
+  let POSTS = [];
+  let activeCategory = 'all';
+
+  async function loadManifest(){
+    try{
+      const res = await fetch('posts/manifest.json');
+      POSTS = await res.json();
+      POSTS.sort((a,b) => new Date(b.date) - new Date(a.date));
+      renderFilters();
+      renderLog();
+    }catch(err){
+      document.getElementById('log').innerHTML =
+        '<p class="empty">Could not load posts/manifest.json — check the file exists and is valid JSON.</p>';
+    }
+  }
+
+  function renderFilters(){
+    const cats = ['all', ...new Set(POSTS.map(p => p.category))];
+    const wrap = document.getElementById('filters');
+    wrap.innerHTML = cats.map(c =>
+      `<button class="filter-btn${c===activeCategory?' active':''}" data-cat="${c}">${c}</button>`
+    ).join('');
+    wrap.querySelectorAll('.filter-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        activeCategory = btn.dataset.cat;
+        renderFilters();
+        renderLog();
+      });
+    });
+  }
+
+  function renderLog(){
+    const list = activeCategory === 'all' ? POSTS : POSTS.filter(p => p.category === activeCategory);
+    const log = document.getElementById('log');
+    if(!list.length){
+      log.innerHTML = '<p class="empty">No writeups in this category yet.</p>';
+      return;
+    }
+    log.innerHTML = list.map(p => `
+      <div class="entry" data-slug="${p.slug}" role="link" tabindex="0" aria-label="Open writeup: ${p.title}">
+        <div class="date mono">${p.date}</div>
+        <div class="body">
+          <h3>${p.title}</h3>
+          <p>${p.excerpt || ''}</p>
+        </div>
+        <div class="tagcol">
+          <span class="cat">${p.category}</span>
+          <div class="tags">${(p.tags||[]).map(t => `<span class="tag-pill">${t}</span>`).join('')}</div>
+        </div>
+      </div>
+    `).join('');
+    log.querySelectorAll('.entry').forEach(el=>{
+      const go = () => { window.location.href = `post.html?slug=${el.dataset.slug}`; };
+      el.addEventListener('click', go);
+      el.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); }
+      });
+    });
+  }
+
+  /* ---------- terminal ---------- */
+  const termOut = document.getElementById('term-output');
+  const termIn = document.getElementById('term-input');
+  let termHistory = [];
+  let termHistIdx = -1;
+
+  function printLine(text, cls){
+    const div = document.createElement('div');
+    div.className = 'term-line' + (cls ? ' ' + cls : '');
+    div.innerHTML = text;
+    termOut.appendChild(div);
+    termOut.scrollTop = termOut.scrollHeight;
+  }
+
+  function printCmd(text){
+    printLine(text, 'cmd');
+  }
+
+  const HELP = [
+    'help              — list commands',
+    'whoami            — short bio',
+    'ls                — list writeup slugs',
+    'ls -l             — list writeups with title and category',
+    'cat &lt;slug&gt;         — open a writeup by slug',
+    'open github       — open GitHub profile',
+    'open linkedin     — open LinkedIn profile',
+    'contact           — jump to the contact section',
+    'neofetch          — system-style summary',
+    'clear             — clear the terminal'
+  ].join('\n');
+
+  function runCommand(raw){
+    const input = raw.trim();
+    printCmd(input);
+    if(!input){ return; }
+    const [cmd, ...rest] = input.split(/\s+/);
+    const arg = rest.join(' ');
+
+    switch(cmd.toLowerCase()){
+      case 'help':
+        printLine(HELP);
+        break;
+      case 'whoami':
+        printLine('Mohammed Nour Al Murie — Security Engineer, Blue Team.\nFocus: DFIR, malware analysis, reverse engineering, Active Directory.');
+        break;
+      case 'ls':
+        if(arg === '-l'){
+          printLine(POSTS.map(p => `${p.slug.padEnd(30)} ${p.category.padEnd(10)} ${p.title}`).join('\n'));
+        }else{
+          printLine(POSTS.map(p => p.slug).join('\n') || 'no posts loaded yet');
+        }
+        break;
+      case 'cat':
+        if(!arg){ printLine('usage: cat <slug>  — try "ls" to list slugs', 'err'); break; }
+        if(POSTS.find(p => p.slug === arg)){
+          printLine(`opening ${arg}...`, 'hint');
+          setTimeout(()=>{ window.location.href = `post.html?slug=${arg}`; }, 250);
+        }else{
+          printLine(`cat: ${arg}: no such post`, 'err');
+        }
+        break;
+      case 'open':
+        if(arg === 'github'){ printLine('opening github.com/0xm7mad ...', 'hint'); window.open('https://github.com/0xm7mad','_blank'); }
+        else if(arg === 'linkedin'){ printLine('opening linkedin ...', 'hint'); window.open('https://www.linkedin.com/in/mohammed-nour-al-murie-1792a32b6/','_blank'); }
+        else{ printLine('usage: open github | open linkedin', 'err'); }
+        break;
+      case 'contact':
+        printLine('scrolling to contact...', 'hint');
+        document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+        break;
+      case 'neofetch':
+        printLine(
+          'm7mad@sec\n' +
+          '---------\n' +
+          `posts: ${POSTS.length}\n` +
+          'role:  Security Engineer / Blue Team\n' +
+          'focus: DFIR, Malware Analysis, RE, AD\n' +
+          'shell: this one'
+        );
+        break;
+      case 'clear':
+        termOut.innerHTML = '';
+        break;
+      default:
+        printLine(`command not found: ${cmd} — type "help"`, 'err');
+    }
+  }
+
+  termIn.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      const val = termIn.value;
+      if(val.trim()){ termHistory.push(val); }
+      termHistIdx = termHistory.length;
+      runCommand(val);
+      termIn.value = '';
+    }else if(e.key === 'ArrowUp'){
+      if(termHistIdx > 0){ termHistIdx--; termIn.value = termHistory[termHistIdx]; }
+      e.preventDefault();
+    }else if(e.key === 'ArrowDown'){
+      if(termHistIdx < termHistory.length - 1){ termHistIdx++; termIn.value = termHistory[termHistIdx]; }
+      else{ termHistIdx = termHistory.length; termIn.value = ''; }
+      e.preventDefault();
+    }
+  });
+
+  printLine('m7mad.sec shell — type "help" to get started.', 'hint');
+
+  loadManifest();
+</script>
+
+</body>
+</html>

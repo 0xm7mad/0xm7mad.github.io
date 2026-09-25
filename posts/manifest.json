@@ -40,7 +40,7 @@
     "excerpt": "A vulnerability in a third-party kernel driver, analysed from sample to root cause."
   },
    {
-    "slug": "Forcepoint DLP Project",
+    "slug": "Forcepoint-DLP-Project",
     "title": "Detecting senstive data in images, Clipboard and phases in Forcepoint DLP",
     "date": "2026-09-27",
     "category":[ "Real World","DLP","Internship"],

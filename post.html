@@ -450,8 +450,7 @@ async function loadPost() {
     /*
      * Load Markdown.
      */
-    const mdRes =
-      await fetch(`posts/${slug}.md`);
+const mdRes = await fetch(`/posts/${encodeURIComponent(slug)}.md`);
 
 
     if (!mdRes.ok) {

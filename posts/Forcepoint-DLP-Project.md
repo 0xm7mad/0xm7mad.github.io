@@ -174,7 +174,7 @@ here Non-domain-Joined source `DESKTOP-TJ22TEP\student` and here an image was tr
 The incident provides the key information needed for an initial investigation, including the triggered rule, source user, destination, and file involved. This information can be used by SOC or DFIR analysts during triage to understand what happened, identify the relevant activity, and determine whether further investigation is required.
 
 
-## Conclusion
+## *Conclusion*
 
 Throughout this project, I demonstrated several Forcepoint DLP detection and enforcement scenarios, including text detection, OCR-based image detection, Regex-based detection, and clipboard monitoring.
 

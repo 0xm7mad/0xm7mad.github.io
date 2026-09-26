@@ -80,10 +80,11 @@
   </p>
 
   <p class="summary">
-    I'm a Cybersecurity student in my final year of university,
-    currently working as a Cybersecurity Engineer Intern at Dyiar United Company.
-    My work and self-study focus on Blue Team operations, DFIR, malware analysis,
-    SOC, and threat intelligence.
+    I like taking things apart until they make sense — malware samples,
+    attack chains, weird process trees at 2am. Final-year cybersecurity
+    student by day, Cybersecurity Engineer Intern at Dyiar United Company
+    by... also day. Blue Team is home: DFIR, malware analysis, SOC work,
+    and threat intel, with the occasional detour into whatever breaks.
   </p>
 
   <div class="links">
@@ -113,8 +114,9 @@
     <div class="about-block">
       <h3>Education</h3>
       <p>
-        Cybersecurity student in my final year of university,
-        currently preparing for graduation.
+        Final-year cybersecurity student, currently deep in the
+        "coursework by day, CTFs by night" phase of getting to
+        graduation.
       </p>
     </div>
 
@@ -122,18 +124,18 @@
       <h3>Internship</h3>
       <p>
         Cybersecurity Engineer Intern at
-        <strong>Dyiar United Company</strong>, working hands-on with
-        enterprise security platforms and infrastructure and learning
-        how security operations run in a live environment.
+        <strong>Dyiar United Company</strong>, elbow-deep in enterprise
+        security platforms and infrastructure — learning what security
+        operations actually look like once alerts start firing for real.
       </p>
     </div>
 
     <div class="about-block">
       <h3>Self-study</h3>
       <p>
-        Outside the internship, building depth through CTFs, personal
-        labs, and technical research — the source material for the
-        case log below.
+        Off the clock, it's CTFs, home-lab rebuilds, and chasing
+        rabbit holes in malware samples — most of which end up as
+        the writeups below.
       </p>
     </div>
 
@@ -143,10 +145,10 @@
   <section id="focus">
     <div class="sec-head"><span class="num">02</span><h2>Focus areas</h2></div>
     <div class="focus-grid">
-      <div class="focus-item"><h3>DFIR</h3><p>Endpoint investigation, timeline reconstruction, and incident write-ups from real detections.</p></div>
-      <div class="focus-item"><h3>Malware analysis</h3><p>Static and dynamic analysis of samples, unpacking, and behavioural breakdowns.</p></div>
-      <div class="focus-item"><h3>Reverse engineering</h3><p>Windows internals, kernel drivers, and vulnerability analysis at the binary level.</p></div>
-      <div class="focus-item"><h3>Active Directory &amp; Kerberos</h3><p>Attack paths, misconfigurations, and detection coverage in AD environments.</p></div>
+      <div class="focus-item"><h3>DFIR</h3><p>Endpoint investigation and timeline reconstruction — turning a pile of logs into a story that actually makes sense.</p></div>
+      <div class="focus-item"><h3>Malware analysis</h3><p>Static and dynamic analysis, unpacking obfuscated samples, and figuring out what the thing is actually trying to do.</p></div>
+      <div class="focus-item"><h3>Reverse engineering</h3><p>Windows internals, kernel drivers, and staring at disassembly until the vulnerability gives itself away.</p></div>
+      <div class="focus-item"><h3>Active Directory &amp; Kerberos</h3><p>Attack paths and misconfigurations — closing the gaps before someone else finds them first.</p></div>
     </div>
     <div class="chip-row" id="tool-chips">
       <span class="chip">CrowdStrike Falcon</span>
@@ -165,20 +167,21 @@
 
   <section id="writeups">
     <div class="sec-head"><span class="num">03</span><h2>Writeups &amp; case log</h2></div>
-    <p class="sec-note">Incidents, CTFs, and reverse engineering notes — written in markdown, rendered here.</p>
+    <p class="sec-note">Incidents, CTFs, and reverse engineering notes — written the way I'd want to read them: no fluff, just what happened and how it was found.</p>
     <div class="filters" id="filters"></div>
     <div class="log" id="log"></div>
   </section>
 
   <section id="terminal-sec">
     <div class="sec-head"><span class="num">04</span><h2>Terminal</h2></div>
-    <p class="sec-note">Type <code>help</code> to see what this does.</p>
+    <p class="sec-note">Type <code>help</code> to see what this does — or just poke around.</p>
     <div class="term" id="term" onclick="document.getElementById('term-input').focus()">
       <div class="term-bar">
         <span class="term-dot" style="background:#b66a4c"></span>
         <span class="term-dot" style="background:#c9a05c"></span>
         <span class="term-dot" style="background:#6bb0a5"></span>
         <span class="term-title mono">visitor@m7mad.sec: ~</span>
+        <span class="term-live mono"><span class="live-dot"></span>LIVE</span>
       </div>
       <div class="term-body mono" id="term-output"></div>
       <div class="term-input-row mono">
@@ -190,8 +193,8 @@
 
   <section id="contact">
     <div class="sec-head"><span class="num">05</span><h2>Contact</h2></div>
-    <p class="summary">Open to Security Engineer, Blue Team, DFIR, and malware analysis roles, and to discussing writeups, CTFs, or
-      findings in more depth.</p>
+    <p class="summary">Open to Security Engineer, Blue Team, DFIR, and malware analysis roles — and always up for talking shop
+      about a writeup, a CTF, or a weird finding.</p>
     <div class="links">
       <a href="https://github.com/0xm7mad" target="_blank" rel="noopener">github</a>
       <a href="https://www.linkedin.com/in/mohammed-nour-al-murie-1792a32b6/" target="_blank" rel="noopener">linkedin</a>
@@ -201,7 +204,7 @@
 
 </main>
 
-<footer><p>Case file maintained by Mohammed Nour Al Murie — updated as new writeups are logged.</p></footer>
+<footer><p>Case file maintained by Mohammed Nour Al Murie — updated whenever something's worth writing up.</p></footer>
 
 <script>
   marked.setOptions({ breaks: false, gfm: true });
@@ -359,7 +362,7 @@ function renderLog(){
         printLine(HELP);
         break;
       case 'whoami':
-        printLine('Mohammed Nour Al Murie — Security Engineer, Blue Team.\nFocus: DFIR, malware analysis, reverse engineering, Active Directory.');
+        printLine('Mohammed Nour Al Murie — Security Engineer, Blue Team.\nFocus: DFIR, malware analysis, reverse engineering, Active Directory.\nCurrently: reading logs so you don\'t have to.');
         break;
       case 'ls':
         if(arg === '-l'){
@@ -393,7 +396,8 @@ function renderLog(){
           `posts: ${POSTS.length}\n` +
           'role:  Security Engineer / Blue Team\n' +
           'focus: DFIR, Malware Analysis, RE, AD\n' +
-          'shell: this one'
+          'shell: this one\n' +
+          'uptime: still awake, still investigating'
         );
         break;
       case 'clear':

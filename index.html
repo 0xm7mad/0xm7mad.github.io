@@ -233,23 +233,36 @@
     }
   }
 
-  function renderFilters(){
-    const cats = ['all', ...new Set(POSTS.map(p => p.category))];
-    const wrap = document.getElementById('filters');
-    wrap.innerHTML = cats.map(c =>
-      `<button class="filter-btn${c===activeCategory?' active':''}" data-cat="${c}">${c}</button>`
-    ).join('');
-    wrap.querySelectorAll('.filter-btn').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        activeCategory = btn.dataset.cat;
-        renderFilters();
-        renderLog();
-      });
+function renderFilters(){
+  const categories = POSTS.flatMap(p =>
+    Array.isArray(p.category) ? p.category : [p.category]
+  );
+
+  const cats = ['all', ...new Set(categories)];
+
+  const wrap = document.getElementById('filters');
+
+  wrap.innerHTML = cats.map(c =>
+    `<button class="filter-btn${c === activeCategory ? ' active' : ''}" data-cat="${c}">${c}</button>`
+  ).join('');
+
+  wrap.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      activeCategory = btn.dataset.cat;
+      renderFilters();
+      renderLog();
     });
-  }
+  });
+}
 
   function renderLog(){
-    const list = activeCategory === 'all' ? POSTS : POSTS.filter(p => p.category === activeCategory);
+    const list = activeCategory === 'all'
+  ? POSTS
+  : POSTS.filter(p =>
+      Array.isArray(p.category)
+        ? p.category.includes(activeCategory)
+        : p.category === activeCategory
+    );
     const log = document.getElementById('log');
     if(!list.length){
       log.innerHTML = '<p class="empty">No writeups in this category yet.</p>';
@@ -263,7 +276,11 @@
           <p>${p.excerpt || ''}</p>
         </div>
         <div class="tagcol">
-          <span class="cat">${p.category}</span>
+          <span class="cat">${
+  Array.isArray(p.category)
+    ? p.category.join(', ')
+    : p.category
+}</span>
           <div class="tags">${(p.tags||[]).map(t => `<span class="tag-pill">${t}</span>`).join('')}</div>
         </div>
       </div>

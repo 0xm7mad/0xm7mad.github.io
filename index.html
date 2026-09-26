@@ -217,8 +217,8 @@
     })();
   })();
 
-  let POSTS = [];
-  let activeCategory = 'all';
+let POSTS = [];
+let activeCategories = new Set();
 
   async function loadManifest(){
     try{
@@ -243,26 +243,45 @@ function renderFilters(){
   const wrap = document.getElementById('filters');
 
   wrap.innerHTML = cats.map(c =>
-    `<button class="filter-btn${c === activeCategory ? ' active' : ''}" data-cat="${c}">${c}</button>`
+    `<button class="filter-btn${
+      c === 'all'
+        ? (activeCategories.size === 0 ? ' active' : '')
+        : (activeCategories.has(c) ? ' active' : '')
+    }" data-cat="${c}">${c}</button>`
   ).join('');
 
   wrap.querySelectorAll('.filter-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
-      activeCategory = btn.dataset.cat;
+      const category = btn.dataset.cat;
+
+      if(category === 'all'){
+        activeCategories.clear();
+      } else {
+        if(activeCategories.has(category)){
+          activeCategories.delete(category);
+        } else {
+          activeCategories.add(category);
+        }
+      }
+
       renderFilters();
       renderLog();
     });
   });
 }
 
-  function renderLog(){
-    const list = activeCategory === 'all'
-  ? POSTS
-  : POSTS.filter(p =>
-      Array.isArray(p.category)
-        ? p.category.includes(activeCategory)
-        : p.category === activeCategory
-    );
+function renderLog(){
+  const list = activeCategories.size === 0
+    ? POSTS
+    : POSTS.filter(p => {
+        const categories = Array.isArray(p.category)
+          ? p.category
+          : [p.category];
+
+        return categories.some(category =>
+          activeCategories.has(category)
+        );
+      });
     const log = document.getElementById('log');
     if(!list.length){
       log.innerHTML = '<p class="empty">No writeups in this category yet.</p>';

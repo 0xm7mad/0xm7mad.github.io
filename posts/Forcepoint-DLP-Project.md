@@ -72,7 +72,7 @@ Test website : dlptest.com
 
 ## Detection Scenarios 
 
-### Scenario 1 — Detection in text
+### Scenario 1 : Detection in text
 
 For this i have used the Word `VISA` for detecting it 
 
@@ -87,7 +87,7 @@ The trigger :
 <video controls width="70%"> <source src="/posts/vid/dec1.mp4" type="video/mp4"> Your browser does not support the video tag. </video>
 
 
-### Scenario 2 — Detection in image (OCR)
+### Scenario 2 : Detection in image (OCR)
 
 For this i have used the Word `VISA` for detecting it ( But in Image )
 
@@ -101,7 +101,7 @@ The trigger :
 
 <video controls width="70%"> <source src="/posts/vid/dec2.mp4" type="video/mp4"> Your browser does not support the video tag. </video>
 
-### Scenario 3 — Regex detection in text and images
+### Scenario 3 : Regex detection in text and images
 
 In this policy i have used the `Regex` of `Visa` :
 
@@ -120,7 +120,7 @@ The Trigger :
 <video controls width="70%"> <source src="/posts/vid/dec3.mp4" type="video/mp4"> Your browser does not support the video tag. </video>
 
 
-### Scenario 4 — Clipboard paste detection
+### Scenario 4 : Clipboard paste detection
 
 The policy is same as the Policies before but in the `Destination` Tab we add Endpoint Application for the Copy/Paste :
 
@@ -140,7 +140,7 @@ We go to Reporting then incident we will find all the triggers there :
 
 Here we can see multiple Blocks from our trigger that we have done it 
 
-### Incident 1 — Regex detection in image (OCR)
+### Incident 1 : Regex detection in image (OCR)
 
 Lets check this one :
 
@@ -148,14 +148,14 @@ Lets check this one :
 
 As we can see that this incident triggered by `Detect visa regex inside photo` rule  and the source of it `intern\m7mad` and the destination `dlptest.com` and the file is `image` , we got all the information need in an investigation 
 
-### Incident 2 — Regex detection in text
+### Incident 2 : Regex detection in text
 Here another Incident about regex as text :
 
 ![Archi](images/tri3.png)
 
 This one was triggered in the same machine `intern\m7mad` and the same destination ,but here it detect the `VISA regex` as text as we can see the message is `4444 4444 4444 4444` so it matched the rule `Visa Regex` (That rule check if its in an image or text both )
 
-### Incident 3 — Clipboard paste detection
+### Incident 3 : Clipboard paste detection
 
 Here another Incident about Clipboard :
 
@@ -163,7 +163,7 @@ Here another Incident about Clipboard :
 
 As we can see here the Source is `intern\m7mad` and the details `Content was pasted from "SVCHOST.EXE" to "Chrome"` and the copied data was `4444 4444 4444 4444` as done before 
 
-### Incident 4 — Regex detection in image, non-domain host
+### Incident 4 : Regex detection in image, non-domain host
 
 Here another Incident about regex as photo :
 
